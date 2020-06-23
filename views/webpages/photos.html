@@ -1,0 +1,13 @@
+<form method="post" action="/upload" enctype="multipart/form-data">
+<div class="form-group">
+  <label for="comment">Add Description:</label>
+  <textarea class="form-control" rows="5" id="comment" required></textarea>
+</div>
+<input type="file" name="sampleFile" ng-model="filename" required class="form-control-file border">
+<input type="submit" class="btn btn-primary" style="margin-top: 17px;"/>
+</form>
+
+<!-- <form method="post" action="/upload" enctype="multipart/form-data">
+  <input type="file" name="sampleFile"/>
+  <input type="submit" />
+</form>  -->

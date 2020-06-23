@@ -1,0 +1,42 @@
+<div ng-show="displayForm">
+<h2> 
+  <span ng-show="!user.id">Create a New Account</span>
+  <span ng-show="user.id">Update Your Information</span>
+<br>
+<br>
+</h2>
+<form name= "myForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Full Name</label>
+        <input name="myInput" type="text" ng-model="user.name" required class="form-control" id="inputEmail4" placeholder="Full Name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Email</label>
+        <input type="email" ng-model="user.email" required class="form-control" id="inputEmail4" placeholder="Email">
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">Address</label>
+          <input type="text" ng-model="user.address" required class="form-control" id="inputEmail4" placeholder="Address">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">Phone Number</label>
+          <input type="text" ng-model="user.phoneNumber" required class="form-control" id="inputPassword4" placeholder="Phone Number">
+        </div>
+      </div>
+      <div ng-include="'modal.html'"></div>
+    
+    <button data-toggle="modal" data-target="#myModal" type="submit" class="btn btn-primary" style="margin-left:14px;width: 10%;">
+      <span ng-show="!user.id">Sign up</span>
+    
+    <span ng-show="user.id">Update</span>
+    </button>
+    <button  type="reset" ng-disabled="user.id" ng-click="user={}" class="btn btn-primary" style="margin-left:14px;width: 10%;">Reset</button>
+  </form>  
+  <button style="float: right;" class="btn btn-primary" type="submit" ng-click="fetch()" ng-show="displayUsers">
+    <span>Show All Users</span>
+    </button>
+    {{user}}
+  </div>
