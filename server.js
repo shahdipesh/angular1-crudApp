@@ -4,7 +4,6 @@ var path = require('path');
 var mysql = require('./connection');
 var queries = require('./queries');
 
-
 var router=require('./router');
 
 var app=express();

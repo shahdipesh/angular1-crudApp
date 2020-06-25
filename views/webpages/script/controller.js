@@ -2,10 +2,34 @@ var app = angular.module("myapp", ["ngRoute"]);
 
 app.controller("ctrl1", ($scope, $http) => {
    var ctrl = this;
+
+   var selected="active";
    $scope.displayForm=true;
    $scope.displayUsers=true;
+   $scope.family={};
    $scope.user={};
-    $scope.userInfo = [],
+   $scope.userInfo = [],           //array of object of all users
+    $scope.employee=[];            //array of obj of employees
+
+    $scope.setName=function(x){
+      $scope.family.name=x;                 //display name in input on click
+      $scope.employee=[];
+
+    }
+
+    $scope.search=function(name){
+        $http.get(`http://localhost:3000/search/?value=${name}`)
+        .then((data)=>{
+          $scope.employee=data.data;
+          if(name.length==0){
+            $scope.employee=[];
+          }
+        })
+    }
+
+    $scope.saveFamilyForm=function(family){
+    console.log("family",family);
+  }
 
     $scope.newAccount=function(){
       $scope.displayForm=true;
@@ -82,4 +106,7 @@ app.config(function($routeProvider) {
           .when('/edit', {
             templateUrl: 'form.html'
             })
+            .when('/familyform', {
+              templateUrl: 'familyform.html'
+              })
 });

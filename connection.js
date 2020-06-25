@@ -13,6 +13,8 @@ var service = {
   }),
   ps: async function (statement, input = []) {
     var query = await this.pool.format(statement, input);
+
+    console.log("QUERY---->",query);
     return query;
   },
 };

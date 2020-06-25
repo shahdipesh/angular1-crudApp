@@ -8,6 +8,14 @@ var store =(path.join(__dirname,'upload'));
 
 var router = express.Router();
 
+router.get('/search',async (req,res)=>{
+   var value = req.query.value;
+   var [data] = await (mysql.pool.query(queries.searchUser,['%'+value+'%','%'+value+'%']));
+   res.send(data);
+})
+
+
+
 router.get ('/allUsers',async(req,res)=>{
     var [users] = await (mysql.pool.query(queries.getUser))
    res.send(users)
