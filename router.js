@@ -3,15 +3,40 @@ const fileUpload = require('express-fileupload');
 var path = require('path');
 var mysql = require('./connection');
 var queries = require('./queries');
+const moment = require('moment');
 
 var store =(path.join(__dirname,'upload'));
 
 var router = express.Router();
 
 router.get('/search',async (req,res)=>{
-   var value = req.query.value;
-   var [data] = await (mysql.pool.query(queries.searchUser,['%'+value+'%','%'+value+'%']));
+    var name= req.query.value;
+   var [data] = await (mysql.pool.query(queries.searchUser,['%'+name+'%','%'+name+'%']));
    res.send(data);
+})
+
+router.post('/savefamilyform',async(req,res)=>{
+
+console.log("=======>",req.body);
+
+    var fullName=req.body.fullName;
+    var email =req.body.email;
+    var workPhone=req.body.workPhone;
+    var homePhone=req.body.homePhone;
+    var homeAddress1= req.body.homeAddress1;
+    var homeAddress2=req.body.homeAddress2;
+    var city=req.body.city;
+    var address=req.body.address;
+    var postalCode=req.body.postalCode;
+    var locationCampus =req.body.location.campus;
+    var locationHealthSystem =req.body.location.health;
+    var  occupationType=req.body.occupationType;
+    var birthDate =(moment(req.body.birthDate)).format('YYYY-MM-DD');
+    var gender=req.body.gender;
+    var maritalStatus =req.body.maritalStatus;
+
+var [data]=await (mysql.pool.query(queries.saveFamilyForm,[fullName,email,workPhone,homePhone,homeAddress1,homeAddress2,city,address,postalCode,occupationType,gender,maritalStatus,birthDate,locationCampus,locationHealthSystem]))
+res.send(data[0])
 })
 
 

@@ -1,10 +1,8 @@
 <form class="form-horizontal">
-    <div class="form-group">
+  <div class="form-group">
       <label class="control-label col-sm-2">Full Name:</label>
       <div class="col-sm-7">
-        <input type="search" class="form-control" ng-model="family.name"  ng-keyUp="search(family.name)" placeholder="Search by name or email">
-
-        <div ng-repeat="x in employee | limitTo:3" class="align-left col-lg-7" ><button class="btn btn-secondary" ng-click="setName(x.name)" type="button" class="form-control" >{{x.name }}</button></div>
+        <input type="search"  class="form-control" ng-model="family.fullName"  ng-keyUp="search(family.fullName)" uib-typeahead="x.name for x in employee | limitTo:5" placeholder="Search by name or email">
     </div>
     </div>
     <div class="form-group">
@@ -17,56 +15,56 @@
     <div class="form-group">
         <label class="control-label col-sm-2">Email Address:</label>
         <div class="col-sm-7">
-          <input type="email" class="form-control" ng-model="family.email" placeholder="Email address">
+          <input type="text" class="form-control" ng-model="family.email"    placeholder="Email address">
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2">Work Phone:</label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" ng-model="family.workPhone" id="pwd" placeholder="xxx-xxx-xxxx">
+          <input type="text" class="form-control" ng-model="family.workPhone"   placeholder="xxx-xxx-xxxx">
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2" for="pwd">Home Phone:</label>
         <div class="col-sm-7">
-          <input required type="text" class="form-control" ng-model="family.homePhone" id="pwd" placeholder="xxx-xxx-xxxx">
+          <input required type="text" class="form-control" ng-model="family.homePhone"   placeholder="xxx-xxx-xxxx">
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2" for="pwd">Home Address1:</label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" ng-model="family.homeAddress1" id="pwd" placeholder="Address line 1">
+          <input type="text" class="form-control" ng-model="family.homeAddress1"   placeholder="Address line 1">
         </div>
       </div>
     
       <div class="form-group">
         <label class="control-label col-sm-2" for="pwd">Home Address2:</label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" ng-model="family.homeAddress2" id="pwd" placeholder="Address line 2">
+          <input type="text" class="form-control" ng-model="family.homeAddress2"   placeholder="Address line 2">
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2" for="pwd">City:</label>
         <div class="col-sm-7">
-          <input required type="text" class="form-control" ng-model="family.city" id="pwd" placeholder="City">
+          <input required type="text" class="form-control" ng-model="family.city"   placeholder="City">
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2" for="pwd">Address:</label>
         <div class="col-sm-7">
-          <input required  type="text" class="form-control" id="pwd" ng-model="family.address" placeholder="CA">
+          <input required  type="text" class="form-control"   ng-model="family.address" placeholder="CA">
         </div>
       </div>
 
       <div class="form-group">
         <label class="control-label col-sm-2" for="pwd">Postal Code:</label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" id="pwd" ng-model="family.postalCode" placeholder="Postal code">
+          <input type="text" class="form-control"   ng-model="family.postalCode" placeholder="Postal code">
         </div>
       </div>
 
@@ -74,8 +72,8 @@
         <label class="control-label col-sm-2" >Location:</label>
         <div class="col-md-10">
             <div class="form-check" >
-                <label class="radio-inline"><input class="form-check-input" type="checkbox" ng-model="family.campus"  name="location" style="margin-right: 5px;">Campus</label>
-                <label class="radio-inline"><input class="form-check-input" type="checkbox"ng-model="family.health"  name="location" style="margin-right: 5px;">Health System</label>
+                <label class="radio-inline"><input class="form-check-input" type="checkbox" ng-model="family.location.campus"  name="location" style="margin-right: 5px;">Campus</label>
+                <label class="radio-inline"><input class="form-check-input" type="checkbox"ng-model="family.location.health"  name="location" style="margin-right: 5px;">Health System</label>
               </div>
         </div>
       </div>
@@ -96,9 +94,10 @@
       <div class="form-group">
         <label class="col-sm-2 control-label">BirthDate:</label>
         <div class="col-md-7">
-            <input type="date" ng-model="family.birthDate" class="form-control" id="pwd" placeholder="BirthDate">
+            <input type=date  ng-model="family.birthDate" class="form-control"  placeholder="BirthDate">
       </div>
       </div>
+      {{family.birthDate}}
       
       <div class="form-group">
         <label class="control-label col-sm-2">Gender:</label>
@@ -130,4 +129,6 @@
       </div>
       </div>
      
+     
+
   </form>

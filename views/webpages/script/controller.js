@@ -1,4 +1,4 @@
-var app = angular.module("myapp", ["ngRoute"]);
+var app = angular.module("myapp", ["ngRoute",'ui.bootstrap']);
 
 app.controller("ctrl1", ($scope, $http) => {
    var ctrl = this;
@@ -6,29 +6,30 @@ app.controller("ctrl1", ($scope, $http) => {
    var selected="active";
    $scope.displayForm=true;
    $scope.displayUsers=true;
-   $scope.family={};
    $scope.user={};
    $scope.userInfo = [],           //array of object of all users
     $scope.employee=[];            //array of obj of employees
 
+  
     $scope.setName=function(x){
       $scope.family.name=x;                 //display name in input on click
       $scope.employee=[];
 
     }
 
-    $scope.search=function(name){
+    $scope.search= function(name){
         $http.get(`http://localhost:3000/search/?value=${name}`)
         .then((data)=>{
+          $scope.employee=[];
           $scope.employee=data.data;
-          if(name.length==0){
-            $scope.employee=[];
-          }
+          console.log($scope.employee);
+  
         })
     }
 
     $scope.saveFamilyForm=function(family){
-    console.log("family",family);
+      $http.post("http://localhost:3000/savefamilyform",family)
+      .then((data)=>{console.log(data)})
   }
 
     $scope.newAccount=function(){
